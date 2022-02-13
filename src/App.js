@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Chat from "./components/Chat";
 import { Button, Input, Text, Wrap, WrapItem } from "@chakra-ui/react";
 
-const socket = io.connect("https://chatly-three.vercel.app");
+const socket = io.connect("https://chatly02.herokuapp.com/");
 
 function App() {
   const [username, setUsername] = useState("");
