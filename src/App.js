@@ -20,8 +20,7 @@ function App() {
     });
 
     return () => socket.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socket]);
+  }, []);
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       const data = { username, room };
