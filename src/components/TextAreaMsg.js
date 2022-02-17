@@ -1,5 +1,5 @@
 import { HStack, IconButton, Textarea } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { MdSend } from "react-icons/md";
 import { useSnapshot } from "valtio";
 import state from "../stor";
