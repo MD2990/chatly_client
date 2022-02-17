@@ -27,16 +27,7 @@ function Chat({ socket }) {
     socket.on("online", ({ users }) => {
       state.onlineUsers = users;
     });
-    socket.on("error", ({ message }) => {
-      toast({
-        title: "Duplicate username",
-        description: message,
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-        position: "top",
-      });
-    });
+
     socket.on("logout", (loggedOutUser) => {
       toast({
         title: "User logged out",
