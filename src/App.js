@@ -3,17 +3,19 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "./components/Chat";
 import { Button, Input, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { useSnapshot } from "valtio";
+import state from "./stor";
 
 const socket = io.connect("https://chatly02.herokuapp.com/");
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  const snap= useSnapshot(state);
+
 
   useEffect(() => {
     socket.on("login", (data) => {
-      setShowChat(true);
+      state.showChat = true;
+      
     });
     socket.on("error", (data) => {
       alert(data.message);
@@ -22,8 +24,8 @@ function App() {
     return () => socket.disconnect();
   }, []);
   const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      const data = { username, room };
+    if (snap.username !== "" && snap.room !== "") {
+      const data = { username:snap.username, room:snap.room };
       socket.emit("join_room", data);
       socket.emit("online", data);
     }
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      {!showChat ? (
+      {!snap.showChat ? (
         <Wrap
           direction={"column"}
           justify={"center"}
@@ -51,7 +53,8 @@ function App() {
               size={"lg"}
               placeholder="Your Name... At least 4 character"
               onChange={(event) => {
-                setUsername(event.target.value);
+                state.username = event.target.value;
+                
               }}
             />
           </WrapItem>
@@ -61,14 +64,15 @@ function App() {
               size={"lg"}
               placeholder="Room ID... At least 4 characters"
               onChange={(event) => {
-                setRoom(event.target.value);
+                state.room = event.target.value;
+                
               }}
             />
           </WrapItem>
 
           <WrapItem alignSelf={"center"}>
             <Button
-              disabled={username.trim().length < 4 || room.trim().length < 4}
+              disabled={snap.username.trim().length < 4 || snap.room.trim().length < 4}
               size={"lg"}
               fontSize={[12, 16, 22, 28]}
               p={[2, 4, 8, 10]}
@@ -79,7 +83,7 @@ function App() {
           </WrapItem>
         </Wrap>
       ) : (
-        <Chat socket={socket} username={username} room={room} />
+        <Chat socket={socket} />
       )}
     </div>
   );

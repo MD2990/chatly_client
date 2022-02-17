@@ -1,5 +1,15 @@
 import { proxy } from "valtio";
 
-const state = proxy({ chat: null, msg: [], id: null, room: null, onlineUsers: [],isTyping:null });
+const state = proxy({
+  messageList: [],
+  username: "",
+  msg: [],
+  id: null,
+  room: "",
+  showChat: false,
+  onlineUsers: [],
+  isTyping: null,
+  loggedOutUsers: [],
+});
 
 export default state;
