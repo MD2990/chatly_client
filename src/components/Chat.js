@@ -171,7 +171,7 @@ function Chat({ socket, username, room }) {
           >
             <Text isTruncated fontSize={["xs", "sm", "md"]} color={"red.100"}>
               {" "}
-              {room}
+              {room.toUpperCase()}
             </Text>
             <Text isTruncated>
               {snap.isTyping && `${snap.isTyping} is Typing...`}{" "}

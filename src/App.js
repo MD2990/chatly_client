@@ -49,23 +49,26 @@ function App() {
           <WrapItem>
             <Input
               size={"lg"}
-              placeholder="Your Name..."
+              placeholder="Your Name... At least 4 character"
               onChange={(event) => {
                 setUsername(event.target.value);
               }}
             />
           </WrapItem>
+
           <WrapItem>
             <Input
               size={"lg"}
-              placeholder="Room ID..."
+              placeholder="Room ID... At least 4 characters"
               onChange={(event) => {
                 setRoom(event.target.value);
               }}
             />
           </WrapItem>
+
           <WrapItem alignSelf={"center"}>
             <Button
+              disabled={username.trim().length < 4 || room.trim().length < 4}
               size={"lg"}
               fontSize={[12, 16, 22, 28]}
               p={[2, 4, 8, 10]}
