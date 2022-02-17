@@ -1,18 +1,17 @@
-import { Box, HStack, IconButton, Text } from '@chakra-ui/react';
-import React from 'react'
-import { BiLogOutCircle } from 'react-icons/bi';
-import { useSnapshot } from 'valtio';
-import state from '../stor';
+import { Box, HStack, IconButton, Text } from "@chakra-ui/react";
+import React from "react";
+import { BiLogOutCircle } from "react-icons/bi";
+import { useSnapshot } from "valtio";
+import state from "../stor";
 
 export default function ChatTopArea({ socket }) {
-    const snap= useSnapshot(state);
+  const snap = useSnapshot(state);
 
-
-    // on logout button click emit logout event
-      const exit = () => {
-        socket.emit("exit", { room: snap.room });
-        window.location.reload();
-      };
+  // on logout button click emit logout event
+  const exit = () => {
+    socket.emit("exit", { room: snap.room });
+    window.location.reload();
+  };
   return (
     <Box
       h="auto"
@@ -36,7 +35,7 @@ export default function ChatTopArea({ socket }) {
           {snap.room.toUpperCase()}
         </Text>
         <Text isTruncated>
-          {snap.isTyping && `${snap.isTyping} is Typing...`}{" "}
+          {snap.isTyping && `${snap.isTyping?.toUpperCase()} is Typing...`}{" "}
         </Text>
         <IconButton
           _focus={{ boxShadow: "none" }}
