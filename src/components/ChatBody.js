@@ -1,4 +1,4 @@
-import { Box, Text, VStack, WrapItem } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useSnapshot } from "valtio";
 import state from "../stor";

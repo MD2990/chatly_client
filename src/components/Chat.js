@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Center, useToast, Wrap, WrapItem } from "@chakra-ui/react";
-import { Box, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useSnapshot } from "valtio";
 import state from "../stor";
