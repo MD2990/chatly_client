@@ -14,19 +14,18 @@ function App() {
   const toast = useToast();
 
   useEffect(() => {
-    socket.on("login", ({user}) => {
+    socket.on("login", ({ user }) => {
       state.showChat = true;
-  
 
-    user !== state.username &&
-      toast({
-        title: "User logged in",
-        description: `${user.toUpperCase()} Joined the chat`,
-        status: "info",
-        duration: 2000,
-        isClosable: true,
-        position: "top",
-      }); 
+      user !== state.username &&
+        toast({
+          title: "User logged in",
+          description: `${user.toUpperCase()} Joined the chat`,
+          status: "info",
+          duration: 2000,
+          isClosable: true,
+          position: "top",
+        });
     });
     socket.on("error", ({ message }) => {
       toast({
@@ -50,9 +49,10 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <>
       {!snap.showChat ? (
         <Wrap
+          align="center"
           direction={"column"}
           justify={"center"}
           spacing={[1, 2, 3]}
@@ -61,11 +61,13 @@ function App() {
           boxShadow={["md", "lg", "xl"]}
           textShadow={`0px 0px 10px lightgray`}
           p={[4, 8, 12, 24]}
-          m="4"
+          m={[4, 8, 12, 24]}
         >
-          <Text fontSize={["2xl", "4xl", "6xl", "7xl"]} textAlign={"center"}>
-            Join A Chat
-          </Text>
+          <WrapItem>
+            <Text fontSize={["2xl", "4xl", "6xl", "7xl"]} textAlign={"center"}>
+              Join A Chat
+            </Text>
+          </WrapItem>
           <WrapItem>
             <Input
               size={"lg"}
@@ -93,7 +95,7 @@ function App() {
               }
               size={"lg"}
               fontSize={[12, 16, 22, 28]}
-              p={[2, 4, 8, 10]}
+              p={[2, 4, 6, 8]}
               onClick={joinRoom}
             >
               Join A Room
@@ -103,7 +105,7 @@ function App() {
       ) : (
         <Chat socket={socket} />
       )}
-    </div>
+    </>
   );
 }
 

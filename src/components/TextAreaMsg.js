@@ -43,7 +43,9 @@ export default function TextAreaMsg({ socket }) {
     <HStack boxShadow={["0px 0px 30px 0px #bcc3c5"]} borderBottomRadius="2xl">
       <Textarea
         fontSize={["sm", "md", "lg", "xl"]}
+        
         p="6"
+        m='2'
         minH={"8rem"}
         ref={currentMessage}
         placeholder="Type your message here..."

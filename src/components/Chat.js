@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useToast } from "@chakra-ui/react";
+import { Center, useToast, Wrap, WrapItem } from "@chakra-ui/react";
 import { Box, HStack } from "@chakra-ui/react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useSnapshot } from "valtio";
@@ -46,29 +46,34 @@ function Chat({ socket }) {
   }, [snap.username, socket, toast]);
 
   return (
-    <HStack
-      justify={"center"}
-      justifyContent="flex-start"
-      align={"flex-start"}
-      m="5"
-      p="5"
-    >
-      <OnlineUsers />
+    <Center>
+      <Wrap
+        minW="10rem"
+        direction={"column"}
+        m="4"
+        
+        w={["30%" , "45%", "55%", "70%"]}
+        rounded="2xl"
+        boxShadow="0px 0px 10px rgba(0, 0, 0, 0.5)"
+      >
+        <WrapItem>
+          <HStack w="full">
+            <ChatTopArea socket={socket} />
+          </HStack>
+        </WrapItem>
 
-      <Box className="chat-window">
-        <ChatTopArea socket={socket} />
+        <ScrollToBottom>
+          <WelcomeMsg />
 
-        <Box className="chat-body">
-          <ScrollToBottom className="message-container">
-            <WelcomeMsg />
+          <LoggedOutUsers />
+          <ChatBody />
+        </ScrollToBottom>
 
-            <LoggedOutUsers />
-            <ChatBody />
-          </ScrollToBottom>
-        </Box>
         <TextAreaMsg socket={socket} />
-      </Box>
-    </HStack>
+      
+      </Wrap>  
+       <OnlineUsers /> 
+    </Center>
   );
 }
 

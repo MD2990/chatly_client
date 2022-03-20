@@ -14,10 +14,8 @@ export default function ChatTopArea({ socket }) {
   };
   return (
     <Box
-      h="auto"
+      w="full"
       borderTopRadius={"lg"}
-      position="relative"
-      display="block"
       color={"twitter.50"}
       fontWeight="extrabold"
       lineHeight="45px"
@@ -31,7 +29,6 @@ export default function ChatTopArea({ socket }) {
         spacing={[1, 2, 3]}
       >
         <Text isTruncated fontSize={["xs", "sm", "md"]} color={"red.100"}>
-          {" "}
           {snap.room.toUpperCase()}
         </Text>
         <Text isTruncated>
