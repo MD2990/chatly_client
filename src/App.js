@@ -6,7 +6,7 @@ import { useSnapshot } from "valtio";
 import state from "./stor";
 import { useToast } from "@chakra-ui/react";
 
-const socket = io.connect("https://chatly02.herokuapp.com/");
+const socket = io.connect("https://chatly-server-9ww3p6ubr-mdad.vercel.app/");
 
 function App() {
   const snap = useSnapshot(state);
